@@ -1,7 +1,7 @@
 #!/bin/bash
 
 #downloads all pngs for report
-wget -r -A png --user=mun --password=Sheesh3l --no-check-certificate https://oasis.solutionip.com/mun/report.html || (echo 'wget failed getting .png images'; exit 1; )
+wget -r -A png --user=uname --password=pass --no-check-certificate https://oasis.solutionip.com/mun/report.html || (echo 'wget failed getting .png images'; exit 1; )
 
 
 #moves fetched files around so they can be easily accessed
@@ -19,7 +19,7 @@ mv battery*.png battery_bandwidth.png
 mv connected*.png connected_wireless_devices.png 
 
 #cookie for access to dashboard
-curl -vd "page=dashbaord&username=munreport&password=FrogIsAtTheLibrary1" -c cookiejar https://smart.solutionip.com/login.cgi
+curl -vd "page=page&username=uname&password=pass" -c cookiejar https://smart.solutionip.com/login.cgi
 
 #fetches information for up/downloaded data breakdown graphs
 curl -d "property_id=225&page=network&start_date=$(date -d'yesterday' +%Y-%m-%d)&end_date=$(date -d 'yesterday' +%Y-%m-%d)" -b cookiejar https://smart.solutionip.com/index.cgi > info.json
